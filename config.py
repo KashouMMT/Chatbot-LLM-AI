@@ -1,5 +1,6 @@
 import os
 
+# Enter your file path to your Chatbot API key
 file_path = r"D:\Work_Folder\\Chatbot_API_Key.txt"
 
 if not os.path.isfile(file_path):
