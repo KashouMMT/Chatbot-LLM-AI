@@ -1,4 +1,3 @@
 from chatbot import *
 
-bot = ChatBot()
-bot.run()
+run_chatbot()

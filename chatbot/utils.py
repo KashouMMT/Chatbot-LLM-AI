@@ -13,14 +13,7 @@ def load_system_prompt(path="prompts/system_prompt.txt"):
     try:
         with open(path,"r",encoding="utf-8") as f:
             data = f.read()
-
-        return {
-            "role": "system",
-            "content": data
-        }
+        return data
     except FileNotFoundError:
         print("[Warning] system_prompt.json not found, using default prompt.")
-        return {
-            "role": "system",
-            "content": "You are a helpful assistant."
-        }
+        return "You are a helpful assistant."
