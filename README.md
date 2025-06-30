@@ -14,7 +14,7 @@ BASE_URL = "<YOUR-BASE-URL>"
 MODEL = "<YOUR-MODEL>"
 ```
 3. Run the following commands to start the chatbot AI.
-```
+```python
 python main.py
 python main.py --debug-info # For info log on console.
 python main.py --debug      # For debug log on console.
