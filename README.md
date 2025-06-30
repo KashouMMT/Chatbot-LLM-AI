@@ -2,11 +2,18 @@
 
 This is a simple chatbot AI in python that use command line to response.
 
+---
+
 ## How to run this AI?
 
-1. Install python, pip and openai.
-2. Modify config.py for file_path (file path to your API Key, it must be in .txt), base url and model of your LLM.
-3. Run python main.py
+1. Please Refer to the requirements.txt for necessary installiation. 
+2. Create .env file in project with the following attributes.
+```
+API_KEY = "<YOUR-API-KEY-HERE>"
+BASE_URL = "<YOUR-BASE-URL>"
+MODEL = "<YOUR-MODEL>"
+```
+3. Run python main.py to start the chatbot AI.
 
 ## How to modify AI behaviour 
 
