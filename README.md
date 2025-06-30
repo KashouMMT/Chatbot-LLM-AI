@@ -13,8 +13,14 @@ API_KEY = "<YOUR-API-KEY-HERE>"
 BASE_URL = "<YOUR-BASE-URL>"
 MODEL = "<YOUR-MODEL>"
 ```
-3. Run python main.py to start the chatbot AI.
+3. Run the following commands to start the chatbot AI.
+```
+python main.py
+python main.py --debug-info # For info log on console.
+python main.py --debug      # For debug log on console.
+```
 
 ## How to modify AI behaviour 
 
 1. Modify prompts/system_prompt.txt to however you like.
+2. Add datasources in .md file to datasource folder for the AI to reference it for RAG.
