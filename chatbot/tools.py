@@ -1,7 +1,8 @@
-from chatbot.utils import print_colored,load_system_prompt
+from chatbot.utils import print_colored,load_system_prompt,log_function_call
 
 SYSTEM_PROMPT = load_system_prompt()
 
+@log_function_call
 def handle_command(command,memory):
     if not command.startswith("/"):
         return None

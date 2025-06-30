@@ -4,7 +4,7 @@ from langchain.prompts import ChatPromptTemplate
 
 from chatbot.memory import MemoryManager
 from chatbot.tools import handle_command
-from chatbot.utils import load_system_prompt,print_colored
+from chatbot.utils import load_system_prompt,print_colored,log_function_call
 
 from .rag.db_builder import Database
 from .rag.retriver import search
@@ -27,7 +27,6 @@ Answer the question based only on the following context:
 
 Answer the question based on the above context: {question}
 """
-
 def run_chatbot():
     print("Chatbot is ready! Type '/exit' to quit. '/help' for command list.")
     
@@ -35,6 +34,7 @@ def run_chatbot():
     memory = MemoryManager(llm=llm,max_tokens=MAX_TOKEN) # Initialize Memory
     memory.add_system_message(SYSTEM_PROMPT) # Load system prompt to memory
     db = Database(CHROMA_PATH) # Create Database
+    db.generate_data_store()
     
     while True:
         user_input = input("You: ") # User input

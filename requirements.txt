@@ -1,5 +1,8 @@
 openai # For LLM AI to interact
 python-dotenv # For .env to load
+unstructured
+"unstructured[md]"
+libmagic
 
 # langchain framework for Openai
 langchain 
@@ -12,6 +15,6 @@ pydantic # For PrivateAttr
 # RAG database setup
 chroma # vector database
 sentence-transformers # Embedding for semantic search
-
+huggingface_hub[hf_xet]
 
 # https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2

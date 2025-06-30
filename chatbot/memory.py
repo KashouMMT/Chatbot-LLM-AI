@@ -4,6 +4,8 @@ from langchain_core.messages.utils import count_tokens_approximately
 from langchain_core.language_models.chat_models import BaseChatModel
 from pydantic import PrivateAttr
 from typing import List,Dict
+
+from chatbot.utils import log_function_call
 class MemoryManager(BaseMemory):
     _history: List = PrivateAttr(default_factory=list)
     _llm: BaseChatModel = PrivateAttr()
@@ -13,28 +15,35 @@ class MemoryManager(BaseMemory):
         super().__init__()
         self._llm = llm
         self._max_tokens = max_tokens
-        
+    
+    @log_function_call
     @property
     def memory_variables(self) -> List[str]:
         return ["messages"]
     
+    @log_function_call
     def load_memory_variables(self, inputs: Dict) -> Dict:
         self._summarize_and_prune_history()
         return {"messages": self._history}
     
+    @log_function_call
     def save_context(self, inputs, outputs):
         self._history.append(HumanMessage(content=inputs["input"]))
         self._history.append(AIMessage(content=outputs["output"]))
-        
+    
+    @log_function_call 
     def clear(self):
         self._history.clear()
     
+    @log_function_call
     def get_messages(self) -> List:
         return self._history
     
+    @log_function_call
     def add_system_message(self, content: str):
         self._history.append(SystemMessage(content=content))
     
+    @log_function_call
     def _summarize_and_prune_history(self):
         tokens = count_tokens_approximately(self._history)
         if tokens <= self._max_tokens:
