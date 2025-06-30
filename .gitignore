@@ -1,0 +1,8 @@
+data/
+data/*
+datasource/
+datasource/*
+database
+database/*
+.env
+__pycache__
