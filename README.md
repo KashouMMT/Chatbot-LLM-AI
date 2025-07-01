@@ -18,7 +18,7 @@ CHATBOT_PROJECT/
 │   │   ├── db_builder.py   # Main RAG database builder
 │   │   ├── embedder.py     # Embedder for database
 │   │   ├── loader.py       # Loads documents for database 
-│   │   └── retriever.py     # Search and compare relavent data from database
+│   │   └── retriever.py    # Search and compare relavent data from database
 │   ├── __init__.py         #
 │   ├── core.py             # Initialize main loop to start AI
 │   ├── memory.py           # Memory Manager for AI
