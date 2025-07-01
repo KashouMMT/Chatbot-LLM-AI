@@ -1,3 +1,4 @@
+from langchain.prompts import ChatPromptTemplate
 from functools import wraps
 
 import logging
@@ -5,6 +6,23 @@ import inspect
 
 # Get a logging instance for your module or a specific category
 logger = logging.getLogger(__name__)
+
+PROMPT_TEMPLATE = """
+Answer the question based only on the following context. Provide by database:
+
+{context}
+
+---
+
+Answer the question based on the above context and chat history: {question}
+"""
+
+colors = {
+    "red": "\033[91m",
+    "green": "\033[92m",
+    "cyan": "\033[96m",
+    "default": "\033[0m"
+}
 
 def log_function_call(func):
     """
@@ -51,12 +69,10 @@ def load_system_prompt(path="prompts/system_prompt.txt"):
         print("[Warning] system_prompt.json not found, using default prompt.")
         return "You are a helpful assistant."
 
-colors = {
-    "red": "\033[91m",
-    "green": "\033[92m",
-    "cyan": "\033[96m",
-    "default": "\033[0m"
-}
+def format_prompt(context_text,user_input):
+    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
+    prompt = prompt_template.format(context=context_text,question=user_input)
+    return prompt
 
 def print_colored(label, text, color="default"):
     print(f"{colors.get(color,'')}{label} {text}\033[0m")

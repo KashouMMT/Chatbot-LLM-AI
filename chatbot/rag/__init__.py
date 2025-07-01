@@ -2,8 +2,8 @@
 
 from .embedder import Embedder
 from .db_builder import Database
-from .formatter import load_documents,split_text
+from .loader import load_documents
 from .retriver import search
 
-__all__ = ["Embedder","Database","load_documents","split_text","search"]
+__all__ = ["Embedder","Database","load_documents","search"]
 

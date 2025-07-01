@@ -1,9 +1,10 @@
 from chatbot.utils import print_colored,load_system_prompt,log_function_call
+from chatbot.memory import MemoryManager
 
 SYSTEM_PROMPT = load_system_prompt()
 
 @log_function_call
-def handle_command(command,memory):
+def handle_command(command: str,memory: MemoryManager):
     if not command.startswith("/"):
         return None
     

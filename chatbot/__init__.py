@@ -2,7 +2,7 @@
 
 from .core import run_chatbot
 from .tools import handle_command
-from .utils import load_system_prompt,print_colored,print_colored_format
+from .utils import load_system_prompt,print_colored,print_colored_format,format_prompt
 from .rag import *
 
 __all__ = [
@@ -11,5 +11,6 @@ __all__ = [
     "load_system_prompt",
     "print_colored",
     "print_colored_format",
+    "format_prompt",
     "rag"
 ]

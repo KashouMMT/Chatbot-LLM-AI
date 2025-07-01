@@ -1,20 +1,19 @@
-openai # For LLM AI to interact
-python-dotenv # For .env to load
-unstructured
-"unstructured[md]"
-libmagic
+openai # For interacting with OpenAI's API, typically for Large Language Models (LLMs)
+python-dotenv # For loading environment variables from a .env file, crucial for managing API keys and sensitive information
+unstructured # A library for parsing and extracting content from various document types
+unstructured[md] # Specifies the Markdown extra for the 'unstructured' library, enabling Markdown file processing
+libmagic # A file type identification library, often used by 'unstructured' for determining file formats
+openpyxl # For reading and writing Excel .xlsx files, likely used for processing structured data sources
 
-# langchain framework for Openai
-langchain 
-langchain-core
-langchian-community
-langchain-openai
+# LangChain framework for building LLM applications
+langchain # The core LangChain library
+langchain-core # Fundamental abstractions and components for LangChain
+langchain-community # Integrations with various third-party services and models, including community-contributed ones
+langchain-openai # Specific integration for using OpenAI models within the LangChain framework
 
-pydantic # For PrivateAttr
+pydantic # A library for data validation and settings management, often used in LangChain for defining schemas and configurations (e.g., PrivateAttr for private model attributes)
 
-# RAG database setup
-chroma # vector database
-sentence-transformers # Embedding for semantic search
-huggingface_hub[hf_xet]
-
-# https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+# RAG (Retrieval Augmented Generation) database setup
+chromadb # A vector database used for storing and querying embeddings for semantic search
+sentence-transformers # For generating high-quality sentence embeddings, essential for semantic search and RAG
+huggingface_hub[hf_xet] # The Hugging Face Hub client library, with the 'hf_xet' extra likely for specific dataset or model handling
