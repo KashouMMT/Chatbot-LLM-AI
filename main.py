@@ -37,17 +37,30 @@ def setup_logging(console_level=None):
     )
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging on console")
-    parser.add_argument("--debug-info",action="store_true",help="Enable INFO logging on console")
-    args = parser.parse_args()
-    
-    if args.debug:
-        console_level = logging.DEBUG
-    elif args.debug_info:
-        console_level = logging.INFO
+    if not os.path.isfile(".env"):
+        print_colored("Error:",".env file doesn't exist. Please make the .env file with correct attributes.","red")
     else:
-        console_level = None
-    
-    setup_logging(console_level)
-    run_chatbot()
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--debug", action="store_true", help="Enable debug logging on console")
+        parser.add_argument("--debug-info",action="store_true",help="Enable INFO logging on console")
+        args = parser.parse_args()
+        
+        if args.debug:
+            console_level = logging.DEBUG
+        elif args.debug_info:
+            console_level = logging.INFO
+        else:
+            console_level = None
+        
+        setup_logging(console_level)
+        logger = logging.getLogger()
+        if not os.path.exists("logs"):
+            logger.info("Logs folder doesn't exist. Creating logs folder.")
+            os.makedirs("logs",exist_ok=True)
+        if not os.path.exists("database"):
+            logger.info("Database folder doesn't exist. Creating database folder.")
+            os.makedirs("database",exist_ok=True)
+        if not os.path.exists("datasource"):
+            logger.info("Datasource folder doesn't exist. Creating datasource folder.")
+            os.makedirs("datasource",exist_ok=True)
+        run_chatbot()
