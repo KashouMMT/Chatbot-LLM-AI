@@ -3,13 +3,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 from pathlib import Path
 from chatbot.utils import log_function_call
+from config import SUPPORTED_EXTENSIONS,DATA_PATH
 
 import csv
 import pandas as pd
 import logging
 
-DATA_PATH = "datasource/"
-SUPPORTED_EXTENSIONS = [".md",".txt",".csv",".xlsx"]
 logger = logging.getLogger(__name__)
 
 @log_function_call

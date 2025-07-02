@@ -3,26 +3,10 @@ from functools import wraps
 
 import logging
 import inspect
+from config import COLORS,PROMPT_TEMPLATE
 
 # Get a logging instance for your module or a specific category
 logger = logging.getLogger(__name__)
-
-PROMPT_TEMPLATE = """
-Answer the question based only on the following context. Provide by database:
-
-{context}
-
----
-
-Answer the question based on the above context and chat history: {question}
-"""
-
-colors = {
-    "red": "\033[91m",
-    "green": "\033[92m",
-    "cyan": "\033[96m",
-    "default": "\033[0m"
-}
 
 def log_function_call(func):
     """
@@ -75,7 +59,7 @@ def format_prompt(context_text,user_input):
     return prompt
 
 def print_colored(label, text, color="default"):
-    print(f"{colors.get(color,'')}{label} {text}\033[0m")
+    print(f"{COLORS.get(color,'')}{label} {text}\033[0m")
     
 def print_colored_format(label, text, color="default"):
-    return f"{colors.get(color,'')}{label} {text}\033[0m"
+    return f"{COLORS.get(color,'')}{label} {text}\033[0m"

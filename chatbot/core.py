@@ -7,25 +7,21 @@ from chatbot.tools import handle_command
 from chatbot.utils import load_system_prompt,print_colored,log_function_call,format_prompt
 
 from .rag.db_builder import Database
-from .rag.retriver import search
+from .rag.retriever import search
 
-from config import API_KEY,BASE_URL,MODEL
+from config import API_KEY,BASE_URL,MODEL,MAX_TOKEN,CHROMA_PATH
 
 import traceback
 import logging
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = load_system_prompt() # Load system prompt
-MAX_TOKEN = 12000 # Max tokens for chat history logs
-CHROMA_PATH = "database/" # File path location for RAG database
-
 @log_function_call
 def run_chatbot():
     
     llm = ChatOpenAI(api_key=API_KEY,base_url= BASE_URL,model = MODEL) # LLM
     memory = MemoryManager(llm=llm,max_tokens=MAX_TOKEN) # Initialize Memory
-    memory.add_system_message(SYSTEM_PROMPT) # Load system prompt to memory
+    memory.add_system_message(load_system_prompt()) # Load system prompt to memory
     db = Database(CHROMA_PATH) # Create Database
     db.generate_data_store()
     print("Chatbot is ready! Type '/exit' to quit. '/help' for command list.")

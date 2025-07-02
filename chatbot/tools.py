@@ -1,8 +1,6 @@
 from chatbot.utils import print_colored,load_system_prompt,log_function_call
 from chatbot.memory import MemoryManager
 
-SYSTEM_PROMPT = load_system_prompt()
-
 @log_function_call
 def handle_command(command: str,memory: MemoryManager):
     if not command.startswith("/"):
@@ -19,7 +17,7 @@ Avilabe commands -
         "cyan")
     elif command == "/restart":
         memory.clear()
-        memory.add_system_message(SYSTEM_PROMPT) # Load system prompt to memory
+        memory.add_system_message(load_system_prompt()) # Load system prompt to memory
         print_colored("System: ","Chat history cleared.","cyan")
     elif command == "/exit":
         print_colored("System: ","The bot is stopped.","cyan")
