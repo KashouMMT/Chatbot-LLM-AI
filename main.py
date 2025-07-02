@@ -24,7 +24,14 @@ def setup_logging(console_level=None):
     if console_level is not None:
         utf8_stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_buffering=True)
         console_handler = logging.StreamHandler(utf8_stdout)
-        console_handler.setLevel(console_level)
+        console_handler.setLevel(logging.DEBUG)
+        
+        class ConsoleLogFilter(logging.Filter):
+            def filter(self, record):
+                return record.levelno >= console_level
+            
+        console_handler.addFilter(ConsoleLogFilter())
+        
         console_handler.setFormatter(logging.Formatter(
             print_colored_format("Debug: ", "%(asctime)s - %(name)s - %(levelname)s - %(message)s", "cyan")
         ))

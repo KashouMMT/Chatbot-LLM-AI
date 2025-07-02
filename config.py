@@ -1,18 +1,16 @@
 from dotenv import load_dotenv, dotenv_values
-from chatbot.utils import print_colored
 
 import os
 import logging
 import sys
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 env_file = ".env"
 
 if not os.path.isfile(env_file):
     error_msg = f"Error: '{env_file}' file doesn't exist. Please create it with correct attributes."
-    print_colored("Error:", error_msg, "red")
+    print("Error: ", error_msg)
     logger.error(error_msg)
     sys.exit(1) # Exit immediately if the file isn't found
 
@@ -25,7 +23,7 @@ empty_vars = []
 
 if not env_vars:
     error_msg = f"Error: '{env_file}' exists but appears to be empty or contains no valid key-value pairs."
-    print_colored("Error:", error_msg, "red")
+    print("Error: ", error_msg)
     logger.error(error_msg)
     sys.exit(1)
 
@@ -37,13 +35,13 @@ for var in required_env_vars:
 
 if missing_vars:
     error_msg = f"Error: Missing required environment variables in '{env_file}': {', '.join(missing_vars)}."
-    print_colored("Error:", error_msg, "red")
+    print("Error:", error_msg)
     logger.error(error_msg)
     sys.exit(1)
 
 if empty_vars:
     error_msg = f"Error: Required environment variables are empty in '{env_file}': {', '.join(empty_vars)}. Please provide values."
-    print_colored("Error:", error_msg, "red")
+    print("Error:", error_msg)
     logger.error(error_msg)
     sys.exit(1)
 
@@ -76,6 +74,6 @@ Answer the question based on the above context and chat history: {question}
 """
 except KeyError as e:
     error_msg = f"Configuration error: Missing expected environment variable after loading: {e}. This indicates a bug in .env validation."
-    print_colored("Critical Error:", error_msg, "red")
+    print("Critical Error:", error_msg)
     logger.critical(error_msg)
     sys.exit(1)

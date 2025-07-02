@@ -3,7 +3,7 @@
 from .embedder import Embedder
 from .db_builder import Database
 from .loader import load_documents
-from .retriver import search
+from .retriever import search
 
 __all__ = ["Embedder","Database","load_documents","search"]
 
